@@ -1,9 +1,20 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+val dotEnv = Properties()
+val dotEnvFile = rootProject.file("../.env")
+if (dotEnvFile.exists()) {
+    dotEnv.load(FileInputStream(dotEnvFile))
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+
 
 android {
     namespace = "com.example.appinovarh"
@@ -28,6 +39,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = dotEnv.getProperty("GOOGLE_MAPS_API_KEY", "")
     }
 
     buildTypes {
