@@ -25,13 +25,27 @@ Para usar o mapa, você precisa de uma chave API do Google Maps.
 4. Crie uma chave API.
 
 #### Configurando a Chave de API
-Para proteger sua chave, ela é carregada a partir de um arquivo `.env` que não é versionado.
-1. Crie um arquivo chamado `.env` na raiz do projeto.
-2. Adicione sua chave ao arquivo da seguinte forma:
+Para proteger sua chave de API, ela não deve ser versionada no Git. As instruções variam por plataforma.
+
+##### Android
+O sistema de build do Android está configurado para ler a chave de um arquivo `.env`.
+
+1. Crie um arquivo chamado `.env` na raiz do projeto (se ainda não existir).
+2. Adicione sua chave ao arquivo:
    ```
    GOOGLE_MAPS_API_KEY=SUA_CHAVE_DE_API_AQUI
    ```
-O sistema de build do Android e iOS está configurado para injetar essa chave automaticamente durante a compilação.
+3. O arquivo `.env` já está no `.gitignore` para evitar que seja enviado ao repositório.
+
+##### iOS
+O sistema de build do iOS usa um arquivo de configuração do Xcode (`.xcconfig`) para gerenciar a chave.
+
+1. Na pasta `ios/Flutter/`, crie um arquivo chamado `Maps.xcconfig`.
+2. Adicione sua chave ao arquivo:
+   ```
+   GOOGLE_MAPS_API_KEY=SUA_CHAVE_DE_API_AQUI
+   ```
+3. O arquivo `ios/Flutter/Maps.xcconfig` já está no `.gitignore`.
 ```
 
 ## Executando
